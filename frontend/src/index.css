@@ -1,0 +1,110 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #0a0c0a;
+  --surface: #10130f;
+  --surface-raised: #141810;
+  --border: rgba(74, 222, 128, 0.14);
+  --border-input: rgba(255, 255, 255, 0.12);
+
+  --text-primary: #f4f7f2;
+  --text-secondary: #b7c1b6;
+  --text-muted: #8a938a;
+  --text-faint: #66706a;
+  --text-ghost: #454e49;
+
+  --brand-primary: #46f08c;
+  --brand-accent: #34d67a;
+  --brand-bg: rgba(52, 214, 122, 0.12);
+  --brand-border: rgba(52, 214, 122, 0.35);
+  --glow: rgba(70, 240, 140, 0.35);
+  --glow-soft: rgba(70, 240, 140, 0.16);
+
+  --band-low: #ef4444;
+  --band-mid: #f59e0b;
+  --band-high: #4ade80;
+  --band-top: #46f08c;
+
+  --error-bg: rgba(239, 68, 68, 0.12);
+  --error-border: rgba(239, 68, 68, 0.4);
+  --error-text: #f87171;
+  --warn-bg: rgba(245, 158, 11, 0.12);
+  --warn-border: rgba(245, 158, 11, 0.4);
+  --warn-text: #fbbf24;
+  --info-bg: rgba(56, 189, 248, 0.12);
+  --info-border: rgba(56, 189, 248, 0.4);
+  --info-text: #7dd3fc;
+
+  --dark-action-bg: #0a0c0a;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text-primary);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.6;
+}
+
+#root {
+  min-height: 100svh;
+}
+
+:focus-visible {
+  outline: 2px solid var(--brand-accent);
+  outline-offset: 2px;
+}
+
+.screen-fade {
+  animation: screen-fade-in 200ms ease-out;
+}
+
+@keyframes screen-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.option-arrow {
+  animation: option-arrow-in 150ms ease-out 50ms both;
+}
+
+@keyframes option-arrow-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Ambient background: soft radial glow + faint dot grid, standing in for the
+   particle-sphere look of the reference design without a canvas/JS dependency. */
+.ambient-glow {
+  position: relative;
+  isolation: isolate;
+}
+
+.ambient-glow::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(60% 50% at 50% 8%, var(--glow-soft) 0%, transparent 70%),
+    radial-gradient(40% 35% at 85% 60%, rgba(70, 240, 140, 0.08) 0%, transparent 70%),
+    radial-gradient(circle at 1px 1px, rgba(74, 222, 128, 0.18) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 28px 28px;
+  background-repeat: no-repeat, no-repeat, repeat;
+}
+
+.card-glow {
+  box-shadow: 0 0 0 1px var(--border), 0 0 28px -10px var(--glow);
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+}
